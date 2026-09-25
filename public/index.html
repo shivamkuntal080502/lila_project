@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LILA BLACK — Player Journey Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">LILA BLACK <span>Player Journey Visualizer</span></div>
+  <div class="filters">
+    <label>Map
+      <select id="mapSelect"></select>
+    </label>
+    <label>Date
+      <select id="dateSelect"></select>
+    </label>
+    <label>Match
+      <select id="matchSelect"></select>
+    </label>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="stage">
+    <div class="stage-toolbar">
+      <div class="toggles">
+        <label class="chip"><input type="checkbox" id="showHumans" checked> Humans</label>
+        <label class="chip"><input type="checkbox" id="showBots" checked> Bots</label>
+        <label class="chip"><input type="checkbox" id="showPaths" checked> Paths</label>
+        <label class="chip"><input type="checkbox" id="showEvents" checked> Events</label>
+        <label class="chip heat"><input type="checkbox" id="showHeat"> Heatmap
+          <select id="heatMode">
+            <option value="deaths">Deaths</option>
+            <option value="kills">Kills</option>
+            <option value="traffic">Traffic</option>
+          </select>
+        </label>
+      </div>
+      <div class="legend">
+        <span class="dot human"></span>Human
+        <span class="dot bot"></span>Bot
+        <span class="dot kill"></span>Kill
+        <span class="dot death"></span>Death
+        <span class="dot storm"></span>Storm
+        <span class="dot loot"></span>Loot
+      </div>
+    </div>
+
+    <div class="canvas-wrap" id="canvasWrap">
+      <img id="minimapImg" src="" alt="minimap">
+      <canvas id="heatCanvas" width="1024" height="1024"></canvas>
+      <canvas id="mainCanvas" width="1024" height="1024"></canvas>
+      <div id="tooltip" class="tooltip hidden"></div>
+    </div>
+
+    <div class="playback">
+      <button id="playBtn">▶</button>
+      <input type="range" id="scrub" min="0" max="1000" value="1000">
+      <span id="timeLabel">0:00 / 0:00</span>
+      <select id="speedSelect">
+        <option value="0.5">0.5x</option>
+        <option value="1" selected>1x</option>
+        <option value="2">2x</option>
+        <option value="4">4x</option>
+        <option value="8">8x</option>
+      </select>
+    </div>
+  </section>
+
+  <aside class="side">
+    <div class="card" id="matchStats">
+      <h3>Match Summary</h3>
+      <div class="stat-grid" id="statGrid"></div>
+    </div>
+    <div class="card">
+      <h3>Players</h3>
+      <div id="playerList" class="player-list"></div>
+    </div>
+  </aside>
+</main>
+
+<div id="loading" class="loading">Loading match data…</div>
+
+<script src="app.js"></script>
+</body>
+</html>

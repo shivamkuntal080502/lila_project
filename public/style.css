@@ -1,0 +1,72 @@
+:root{
+  --bg:#0d0f14; --panel:#161923; --panel2:#1d212e; --border:#2a2f3d;
+  --text:#e8eaf0; --muted:#8b90a3; --accent:#ff5c39;
+  --human:#4fc3f7; --bot:#8d97ad; --kill:#ff5c39; --death:#ffd166;
+  --storm:#b388ff; --loot:#4caf50;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;
+  padding:10px 20px;background:var(--panel);border-bottom:1px solid var(--border);
+  flex-wrap:wrap;gap:10px;}
+.brand{font-weight:700;font-size:16px;letter-spacing:.3px}
+.brand span{font-weight:400;color:var(--muted);margin-left:8px;font-size:13px}
+.filters{display:flex;gap:14px;flex-wrap:wrap}
+.filters label{display:flex;flex-direction:column;font-size:11px;color:var(--muted);gap:3px}
+select{background:var(--panel2);color:var(--text);border:1px solid var(--border);
+  border-radius:6px;padding:6px 8px;font-size:13px;min-width:150px}
+
+.layout{display:grid;grid-template-columns:1fr 300px;gap:14px;padding:14px 20px;
+  max-width:1500px;margin:0 auto;}
+.stage{background:var(--panel);border:1px solid var(--border);border-radius:10px;
+  padding:12px;display:flex;flex-direction:column;gap:10px;}
+.stage-toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.toggles{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:flex;align-items:center;gap:6px;background:var(--panel2);border:1px solid var(--border);
+  border-radius:20px;padding:5px 10px;font-size:12px;cursor:pointer;user-select:none}
+.chip.heat select{margin-left:4px;padding:2px 6px;font-size:11px;min-width:auto}
+.legend{display:flex;gap:10px;font-size:11px;color:var(--muted);flex-wrap:wrap;align-items:center}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:3px;vertical-align:middle}
+.dot.human{background:var(--human)} .dot.bot{background:var(--bot)}
+.dot.kill{background:var(--kill)} .dot.death{background:var(--death)}
+.dot.storm{background:var(--storm)} .dot.loot{background:var(--loot)}
+
+.canvas-wrap{position:relative;width:100%;aspect-ratio:1/1;max-width:900px;margin:0 auto;
+  background:#000;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+.canvas-wrap img, .canvas-wrap canvas{position:absolute;top:0;left:0;width:100%;height:100%;}
+#minimapImg{object-fit:cover;}
+#heatCanvas{mix-blend-mode:screen;opacity:.85;pointer-events:none}
+#mainCanvas{pointer-events:none}
+.tooltip{position:absolute;background:rgba(10,12,18,.95);border:1px solid var(--border);
+  padding:6px 9px;border-radius:6px;font-size:11px;pointer-events:none;transform:translate(-50%,-120%);
+  white-space:nowrap;z-index:5}
+.tooltip.hidden{display:none}
+
+.playback{display:flex;align-items:center;gap:10px;padding:4px 6px;}
+#playBtn{background:var(--accent);border:none;color:#fff;width:34px;height:34px;border-radius:50%;
+  font-size:14px;cursor:pointer;flex:none}
+#scrub{flex:1}
+#timeLabel{font-size:12px;color:var(--muted);min-width:95px;text-align:right}
+#speedSelect{min-width:60px;padding:4px 6px;font-size:12px}
+
+.side{display:flex;flex-direction:column;gap:14px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px;}
+.card h3{margin:0 0 10px;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;font-size:13px}
+.stat-grid div.k{color:var(--muted)} .stat-grid div.v{font-weight:600;text-align:right}
+.player-list{max-height:420px;overflow-y:auto;display:flex;flex-direction:column;gap:6px}
+.player-row{display:flex;align-items:center;justify-content:space-between;font-size:12px;
+  padding:6px 8px;border-radius:6px;background:var(--panel2);cursor:pointer;border:1px solid transparent}
+.player-row:hover{border-color:var(--border)}
+.player-row.dim{opacity:.35}
+.player-row .tag{display:flex;align-items:center;gap:6px}
+.player-row .id{font-family:monospace;font-size:11px;color:var(--muted)}
+.player-row .k{color:var(--kill);font-size:11px}
+
+.loading{position:fixed;inset:0;background:rgba(13,15,20,.85);display:flex;align-items:center;
+  justify-content:center;font-size:14px;color:var(--muted);z-index:50}
+.loading.hidden{display:none}
+
+@media (max-width:900px){ .layout{grid-template-columns:1fr} }
